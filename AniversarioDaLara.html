@@ -1,49 +1,94 @@
+<!DOCTYPE html>
 <html lang="pt">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Você, Meu Bem 💖</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffebcd;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            width: 300px;
+        }
+        .hidden {
+            display: none;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #d81b60;
+        }
+        .heart {
+            font-size: 50px;
+            animation: pulse 1s infinite;
+            color: red;
+            margin-top: 10px;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+    </style>
 </head>
-<style>
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background-color: #ffebcd;
-        flex-direction: column;
-        font-family: Arial, sans-serif;
-    }
-    .card {
-        background: white;
-        padding: 20px;
-        text-align: center;
-        border-radius: 10px;
-        box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-    }
-    .hidden {
-        display: none;
-    }
-    button {
-        margin-top: 10px;
-        padding: 10px;
-        background-color: #ff4081;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
- </style>
- </head>
- <body>
+<body>
+
     <div class="card">
-        <h2>Feliz Aniversario, amor!</h2>
-        <p class="hidden" id="message">Eu te vivo!! </p>
-        <button onclick="showMessage()">Clique para abrir</button>
+        <h2 id="title">Para Você, Amor 💖</h2>
+        <p id="message">Clique no botão para ler minha mensagem.</p>
+        <div id="heart" class="hidden">❤️</div>
+        <button onclick="nextMessage()">Clique aqui</button>
     </div>
- </body>
- <script>
-    function showMessage() {
-        let message = document.getElementById("message");
-        message.classList.remove("hidden");
-    }
- </script>
- </body>
- </html>
+
+    <iframe id="youtube-player" width="0" height="0" frameborder="0" allow="autoplay"></iframe>
+
+    <script>
+        let messages = [
+            "Nossas ligações sao sempre a melhor hora do dia. 💕",
+            "Cada momento ao seu lado é perfeito. 🎁",
+            "Ter você como parceira é risada o tempo inteiro.",
+            "O João Victor de uns anos atrás ficaria muito feliz de saber que a Leebeijinhos é a namorada dele.",
+            "Eu sou muito grato por ter você. 😍",
+            "Te vivo incondicionalmente! 💖"
+        ];
+        let index = 0;
+
+        function nextMessage() {
+            let messageElement = document.getElementById("message");
+            let heartElement = document.getElementById("heart");
+
+            if (index < messages.length) {
+                messageElement.innerText = messages[index];
+                index++;
+            } else {
+                messageElement.innerText = "Feliz Aniversário, meu amor! 🥰";
+                heartElement.classList.remove("hidden");
+
+                // Tocar música no final
+                document.getElementById("youtube-player").src = "https://www.youtube.com/embed/Uq9gPaIzbe8?autoplay=1";
+            }
+        }
+    </script>
+
+</body>
+</html>
+
